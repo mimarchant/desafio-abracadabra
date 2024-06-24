@@ -3,15 +3,13 @@ const app = express();
 
 const usuarios = {
   usuarios: [
-    "Miguel",
-    "Alejandro",
-    "Jorge",
-    "Ricardo",
-    "Luis",
-    "Carlos",
-    "Daniel",
     "Juan",
-    "Laura",
+    "Jocelyn",
+    "Astrid",
+    "Maria",
+    "Ignacia",
+    "Javier",
+    "Brian",
   ],
 };
 
@@ -37,6 +35,22 @@ app.get("/abracadabra/juego/:usuario", (req, res) => {
 // ruta usuarios
 app.get("/abracadabra/usuarios", (req, res) => {
   res.send(usuarios);
+});
+
+app.get("/abracadabra/conejo/:numero", (req, res) => {
+  const numeroUsuario = req.params.numero;
+  const numeroAleatorio = Math.floor(Math.random() * 4) + 1;
+
+  if (numeroUsuario == numeroAleatorio) {
+    res.sendFile(__dirname + "/assets/conejito.jpg");
+  } else {
+    res.sendFile(__dirname + "/assets/voldemort.jpg");
+  }
+});
+
+//ruta no existe
+app.get("*", (req, res) => {
+  res.send("Esta página no existe :(");
 });
 
 app.listen(3000, () => {
