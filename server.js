@@ -15,6 +15,9 @@ const usuarios = {
   ],
 };
 
+//middleware para archivos estaticos
+app.use(express.static("assets"));
+
 //middleware
 app.use("/abracadabra/juego/:usuario", (req, res, next) => {
   const usuarioRequest = req.params.usuario;
